@@ -1,7 +1,7 @@
 {
-  "name": "nytimes-api-demo",
+  "name": "kaltura-api-demo",
   "version": "0.1.2",
-  "description": "A demo of the New York Times API",
+  "description": "A demo of the Kaltura API",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"

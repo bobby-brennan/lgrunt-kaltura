@@ -1,22 +1,22 @@
 {
-  "clientFile": "nyt-swag.js",
-  "wrapperFile": "nyt-wrap.js",
-  "clientName": "NYTimes",
+  "wrapperFile": "kaltura-custom-api.js",
+  "clientName": "Kaltura",
   "lucyDir": "lucy/",
   "destDir": "test/golden/heroku/",
   "repo": "http://github.com/fake-user/some-repo",
   "functions": [{
-    "operationId": "mediaSearch",
-    "alias": "Search",
+    "operationId": "listMedia",
+    "alias": "Newest Media",
     "variables": {
-      "q": "query",
-      "sort": "sort",
-      "page": "page"
+      "nameLike": "nameLike"
+    },
+    "constants": {
+      "orderBy": "+createdAt"
     }
   }],
   "heroku": {
-    "appName": "NYTimes API Demo",
-    "appDescription": "A demo of the New York Times API",
-    "nodeName": "nytimes-api-demo"
+    "appName": "Kaltura API Demo",
+    "appDescription": "A demo of the Kaltura API",
+    "nodeName": "kaltura-api-demo"
   }
 }

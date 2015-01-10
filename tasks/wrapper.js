@@ -20,17 +20,19 @@ module.exports = function (grunt) {
     }
 
     config.secrets = {
-      keyPage = "http://kmc.kaltura.com/index.php/kmc/kmc4#account|overview";
-      keys = {'partner_id': 'Partner ID', 'admin_secret': 'Admin Secret'}
+      keyPage: "http://kmc.kaltura.com/index.php/kmc/kmc4#account|overview",
+      keys: {'partner_id': 'Partner ID', 'admin_secret': 'Admin Secret'}
     }
 
     config.ui = {
        components: {
-        'listMedia': { type: 'angular', file: 'media-list.html' },
+        'listMedia': { type: 'angular', file: 'media-list.html', jsImports: ['js/media-list.js'] },
        },
        pageHeader: 'header.html',
        pageFooter: 'footer.html'
     }
+    config.clientFile = './kaltura/kaltura-raw-api.js';
+    config.wrapperOnly = true;
 
     require('./copy-src-files.js').copy(grunt);
 

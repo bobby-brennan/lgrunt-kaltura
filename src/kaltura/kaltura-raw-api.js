@@ -1,23 +1,26 @@
 var FS = require('fs');
-var KalturaConstants = require('./kaltura/KalturaTypes.js');
-var Kaltura = require('./kaltura/KalturaClient.js');
+var KalturaConstants = require('./KalturaTypes.js');
+var Kaltura = require('./KalturaClient.js');
 
-var Config = new Kaltura.KalturaConfiguration(exports.Secrets.partner_id);
-var KalturaClient = new Kaltura.KalturaClient(Config);
+var KalturaClient = null;
 
 var Session = null;
 
-var initialize = function(callback) {
+exports.initialize = function(secrets, callback) {
+  secrets.partner_id = +secrets.partner_id;
+  var config = new Kaltura.KalturaConfiguration(secrets.partner_id);
+  KalturaClient = new Kaltura.KalturaClient(config);
   KalturaClient.session.start(function(session) {
     KalturaClient.setKs(session);
     Session = session;
     callback();
-  }, exports.Secrets.admin_secret, exports.Secrets.user_id, KalturaConstants.KalturaSessionType.ADMIN,
-     exports.Secrets.partner_id, exports.Secrets.session_length);
+  }, secrets.admin_secret, secrets.user_id, KalturaConstants.KalturaSessionType.ADMIN,
+     secrets.partner_id, secrets.session_length);
 }
 
-exports.getMedia = function(filterOptions, callback) {
-  if (!Session) return initialize( function() {exports.getMedia(filterOptions, callback)} );
+exports.initialized = function() { return KalturaClient !== null }
+
+exports.listMedia = function(filterOptions, callback) {
   var filter = new Kaltura.objects.KalturaMediaEntryFilter();
   for (var key in filterOptions) {
     filter[key] = filterOptions[key];

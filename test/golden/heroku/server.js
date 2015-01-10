@@ -5,7 +5,7 @@ var BodyParser = require('body-parser');
 App.set('views', __dirname);
 App.set('view engine', 'ejs');
 
-var NYTimes = require('./lucy/nyt-wrap.js');
+var Kaltura = require('./lucy/kaltura-custom-api.js');
 
 App.set('port', (process.env.PORT || 3000));
 App.use(BodyParser.json());
@@ -14,35 +14,39 @@ App.use(BodyParser.urlencoded({
 }));
 
 App.get('/', function(req, res, next) {
-  if (!NYTimes.Secrets) {
-    res.redirect('secrets.html');
+  console.log('star');
+  if (!Kaltura.initialized()) {
+    console.log('redir');
+    res.redirect('/secrets.html');
   } else {
     next();
   }
 });
 
 App.post('/setSecrets', function(req, res) {
-  if (!NYTimes.Secrets) {
-    NYTimes.Secrets = {};
-    NYTimes.Secrets.apiKey = req.body.apiKey
+  if (!Kaltura.initialized()) {
+    Kaltura.initialize(req.body, function() {
+      res.redirect('/');
+    });
+  } else {
+    res.redirect('/');
   }
-  res.redirect('/');
 });
 
 App.get('/', function(req, res) {
-  res.redirect('/search.html');
+  res.redirect('/newest-media.html');
 });
 
 
-App.post('/search', function(req, res) {
+App.post('/newestMedia', function(req, res) {
   console.log('request' + JSON.stringify(req.body));
-  NYTimes.search(req.body.q, req.body.sort, req.body.page, function(err, result) {
+  Kaltura.newestMedia(req.body.nameLike, function(err, result) {
     if (err) {
       console.log('Error:' + JSON.stringify(err));
       res.statusCode(401);
       return res.end();
     }
-    console.log('got data, returning');
+    console.log('got data, returning:' + JSON.stringify(result));
     res.send(JSON.stringify(result));
   });
 })

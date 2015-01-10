@@ -1,4 +1,4 @@
-    <div class="container" ng-controller="ArticleListController">
+    <div class="container" ng-controller="MediaListController">
 
         <!-- Page Heading -->
         <div class="row">
@@ -6,22 +6,28 @@
                 <h1 class="page-header">Search Results</h1>
             </div>
         </div>
-        <div ng-repeat="article in result.response.docs" ng-init="image = getBestImage(article.multimedia)">
-        <!-- /.row -->
-          <div class="row" ng-if="image">
-              <div class="col-md-5">
-                <a href="#">
-                <img class="side-image" ng-if="image" src="http://nytimes.com/{{ image }}" alt="">
-                <img class="side-image" ng-if="!image" alt=""></a>
-              </div>
-              <div class="col-md-7">
-                  <h3>{{ article.headline.main }}<h3>
-                  <h4>{{ article.headline.kicker }}</h4>
-                  <p>{{ article.abstract }}</p>
-                  <a class="btn btn-primary" href="{{ article.web_url }}">View Article <span class="glyphicon glyphicon-chevron-right"></span></a>
-              </div>
-          </div>
-          <hr ng-if="image">
-        </div>
+
+        <div ng-repeat="video in result">
+          <div class="row">
+            <div class="col-xs-5">
+<div id="kaltura_player_{{ video.id }}" style="width: 400px; height: 333px;" itemprop="video" itemscope itemtype="http://schema.org/VideoObject" ng-init="loadScript(video)">
+<span itemprop="name" content="{{ video.name }}"></span>
+<span itemprop="description" content="{{ video.description }}"></span>
+<span itemprop="duration" content="65"></span>
+<span itemprop="thumbnail" content="{{ video.thumbnailUrl }}"></span>
+<span itemprop="width" content="400"></span>
+<span itemprop="height" content="333"></span>
+<a href="http://corp.kaltura.com/products/video-platform-features">Video Platform</a>
+<a href="http://corp.kaltura.com/Products/Features/Video-Management">Video Management</a> 
+<a href="http://corp.kaltura.com/Video-Solutions">Video Solutions</a>
+<a href="http://corp.kaltura.com/Products/Features/Video-Player">Video Player</a></div>
+             </div>
+             <div class="col-xs-7">
+               <h3>{{ video.name }}</h3>
+               <p>{{ video.description }}</p>
+             </div>
+           </div>
+           <hr>
+         </div>
 
     </div>
