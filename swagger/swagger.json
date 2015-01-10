@@ -1,0 +1,138 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "NYT API",
+        "description": "Move your app forward with the Uber API",
+        "version": "1.0.0"
+    },
+    "host": "api.nytimes.com",
+    "schemes": [
+        "https"
+    ],
+    "basePath": "/svc/search/v2",
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/articlesearch.json": {
+            "get": {
+                "operationId": "articleSearch",
+                "summary": "Article Search",
+                "description": "Returns a list of tweets that match the query\n",
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "description": "query to search",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page, starting with 0",
+                        "type": "integer",
+                        "style": {
+                          "type": "pagination"
+                        }
+                    },
+                    {
+                        "name": "begin_date",
+                        "in": "query",
+                        "description": "Begin date",
+                        "type": "string"
+                    },
+                    {
+                        "name": "api-key",
+                        "in": "query",
+                        "description": "Api Key",
+                        "type": "string",
+                        "secret": true
+                    },
+                    {
+                        "name": "end_date",
+                        "in": "query",
+                        "description": "End date",
+                        "type": "string"
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Sort order",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of articles",
+                        "schema": {
+                            "type": "object",
+                            "propterties": {
+                                "response": {
+                                    "type": "object",
+                                    "properties": {
+                                        "docs": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#definitions/Article"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Article": {
+            "properties": {
+                "web_url": {"type": "string"},
+                "snippet": {"type": "string"},
+                "lead_paragraph": {"type": "string"},
+                "multimedia": {
+                    "type": "array",
+                    "items": {"$ref": "#definitions/Multimedia"}
+                },
+                "headline": {
+                    "type": "object",
+                    "properties": {
+                       "main": {"type": "string"},
+                       "print_headline": {"type": "string"}
+                    }
+                }
+            }
+        },
+        "Multimedia": {
+            "properties": {
+                "width": {"type": "integer"},
+                "height": {"type": "integer"},
+                "url": {"type": "string"},
+                "type": {"type": "string"},
+                "subtype": {"type": "string"}
+            }
+        },
+        "Error": {
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "fields": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
