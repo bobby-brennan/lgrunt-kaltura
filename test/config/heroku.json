@@ -6,7 +6,7 @@
   "destDir": "test/golden/heroku/",
   "repo": "http://github.com/fake-user/some-repo",
   "functions": [{
-    "operationId": "articleSearch",
+    "operationId": "mediaSearch",
     "alias": "Search",
     "variables": {
       "q": "query",

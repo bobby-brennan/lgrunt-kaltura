@@ -11,20 +11,22 @@ module.exports = function (grunt) {
   var Mkdirp = require('mkdirp');
   var FS = require('fs');
 
-  grunt.registerTask('nyt_wrapper', 'A grunt plugin for generating wrappers the NYTimes API', function () {
-    var config = grunt.config.get('nyt_wrapper');
+  grunt.registerTask('kaltura_demo', 'A grunt plugin for generating demos for the Kaltura API', function () {
+    var config = grunt.config.get('kaltura_demo');
     if (config.destDir) {
       Mkdirp.sync(config.destDir);
       process.chdir(config.destDir);
       config.destDir = null;
     }
-    config.swagger = grunt.file.readJSON(__dirname + '/../swagger/swagger.json');
 
-    config.secrets = ["apiKey"];
+    config.secrets = {
+      keyPage = "http://kmc.kaltura.com/index.php/kmc/kmc4#account|overview";
+      keys = {'partner_id': 'Partner ID', 'admin_secret': 'Admin Secret'}
+    }
 
     config.ui = {
        components: {
-        'articleSearch': { type: 'angular', file: 'article-list.html' },
+        'listMedia': { type: 'angular', file: 'media-list.html' },
        },
        pageHeader: 'header.html',
        pageFooter: 'footer.html'

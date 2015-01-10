@@ -1,21 +1,21 @@
 {
-  "name": "lgrunt-nyt",
+  "name": "lgrunt-kaltura",
   "version": "0.0.0",
-  "description": "lgrunt-nyt ==========",
+  "description": "lgrunt-kaltura ==========",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/bobby-brennan/lgrunt-nyt.git"
+    "url": "https://github.com/bobby-brennan/lgrunt-kaltura.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/bobby-brennan/lgrunt-nyt/issues"
+    "url": "https://github.com/bobby-brennan/lgrunt-kaltura/issues"
   },
-  "homepage": "https://github.com/bobby-brennan/lgrunt-nyt",
+  "homepage": "https://github.com/bobby-brennan/lgrunt-kaltura",
   "dependencies": {
     "lucy-rest-api-client": "0.0.1",
     "mkdirp": "^0.5.0"
