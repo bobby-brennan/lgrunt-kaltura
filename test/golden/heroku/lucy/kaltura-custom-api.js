@@ -30,4 +30,12 @@ exports.samplePlaylists = function(nameLike, callback) {
     params[secret] = Secrets[secret];
   }
   return Client.listPlaylists(params, callback);}
+exports.likeVideo = function(entryId, callback) {
+  var params = {
+    'entryId': entryId,
+  };
+  for (var secret in Secrets) {
+    params[secret] = Secrets[secret];
+  }
+  return Client.like(params, callback);}
 

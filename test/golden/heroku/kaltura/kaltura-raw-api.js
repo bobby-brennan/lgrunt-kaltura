@@ -27,6 +27,7 @@ exports.listMedia = function(filterOptions, callback) {
   }
   var pager = new Kaltura.objects.KalturaFilterPager();
   KalturaClient.media.listAction(function(results) {
+    if (results.objectType === 'KalturaAPIException') return callback(results);
     callback(null, results.objects);
   }, filter, pager);
 }
@@ -38,6 +39,14 @@ exports.listPlaylists = function(filterOptions, callback) {
   }
   var pager = new Kaltura.objects.KalturaFilterPager();
   KalturaClient.playlist.listAction(function(results) {
+    if (results.objectType === 'KalturaAPIException') return callback(results);
     callback(null, results.objects);
   }, filter, pager);
+}
+
+exports.like = function(options, callback) {
+  KalturaClient.like.like(function(result) {
+    if (result.objectType === 'KalturaAPIException') return callback(result);
+    callback(null, result);
+  }, options.entryId)
 }

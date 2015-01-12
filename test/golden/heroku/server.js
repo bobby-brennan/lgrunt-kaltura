@@ -40,7 +40,7 @@ App.post('/newestMedia', function(req, res) {
   Kaltura.newestMedia(req.body.nameLike, function(err, result) {
     if (err) {
       console.log('Error:' + JSON.stringify(err));
-      res.statusCode(401);
+      res.status(401);
       return res.end();
     }
     res.send(JSON.stringify(result));
@@ -51,7 +51,18 @@ App.post('/samplePlaylists', function(req, res) {
   Kaltura.samplePlaylists(req.body.nameLike, function(err, result) {
     if (err) {
       console.log('Error:' + JSON.stringify(err));
-      res.statusCode(401);
+      res.status(401);
+      return res.end();
+    }
+    res.send(JSON.stringify(result));
+  });
+})
+
+App.post('/likeVideo', function(req, res) {
+  Kaltura.likeVideo(req.body.entryId, function(err, result) {
+    if (err) {
+      console.log('Error:' + JSON.stringify(err));
+      res.status(401);
       return res.end();
     }
     res.send(JSON.stringify(result));

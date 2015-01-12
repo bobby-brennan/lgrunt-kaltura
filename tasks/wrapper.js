@@ -21,13 +21,14 @@ module.exports = function (grunt) {
 
     config.secrets = {
       keyPage: "http://kmc.kaltura.com/index.php/kmc/kmc4#account|overview",
-      keys: {'partner_id': 'Partner ID', 'admin_secret': 'Admin Secret'}
+      keys: {'partner_id': 'Partner ID', 'admin_secret': 'Admin Secret', 'user_id': 'User ID'}
     }
 
     config.ui = {
        components: {
         'listMedia': { type: 'angular', file: 'media-list.html', jsImports: ['js/media-list.js'] },
         'listPlaylists': { type: 'angular', file: 'playlist-list.html', jsImports: ['js/playlist-list.js'] },
+        'like': { type: 'angular', file: 'like.html', jsImports: []},
        },
        pageHeader: 'header.html',
        pageFooter: 'footer.html'
