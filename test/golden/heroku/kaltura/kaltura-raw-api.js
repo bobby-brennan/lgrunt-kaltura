@@ -30,3 +30,14 @@ exports.listMedia = function(filterOptions, callback) {
     callback(null, results.objects);
   }, filter, pager);
 }
+
+exports.listPlaylists = function(filterOptions, callback) {
+  var filter = new Kaltura.objects.KalturaPlaylistFilter();
+  for (var key in filterOptions) {
+    filter[key] = filterOptions[key];
+  }
+  var pager = new Kaltura.objects.KalturaFilterPager();
+  KalturaClient.playlist.listAction(function(results) {
+    callback(null, results.objects);
+  }, filter, pager);
+}

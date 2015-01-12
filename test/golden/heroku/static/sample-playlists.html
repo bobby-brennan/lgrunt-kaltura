@@ -1,7 +1,7 @@
 <html>
 <head>
   <title>
-    Newest Media
+    Sample Playlists
   </title>
   <link rel="stylesheet" href="bower/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/styles.css">
@@ -9,12 +9,12 @@
   <script src="bower/angular/angular.min.js"></script>
   <script src="js/app.js"></script>
 
-  <script src="js/newest-media.js"></script>
+  <script src="js/sample-playlists.js"></script>
 
-  <script src="js/media-list.js"></script>
+  <script src="js/playlist-list.js"></script>
 
 </head>
-<body ng-app="app" ng-controller="newestMediaController">
+<body ng-app="app" ng-controller="samplePlaylistsController">
   <a id="top"></a>
   <div ng-include="'header.html'"></div>
 
@@ -34,7 +34,7 @@
     </div>
   </div>
 
-  <div ng-include="'media-list.html'" ng-init="loadData(inputs)"></div>
+  <div ng-include="'playlist-list.html'" ng-init="loadData(inputs)"></div>
   <div class="row text-center">
       <div class="col-lg-12">
           <ul class="pagination" ng-init="">

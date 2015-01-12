@@ -13,6 +13,15 @@
     "constants": {
       "orderBy": "+createdAt"
     }
+  }, {
+    "operationId": "listPlaylists",
+    "alias": "Sample Playlists",
+    "variables": {
+      "nameLike": "nameLike"
+    },
+    "constants": {
+      "nameLike": "videos"
+    }
   }],
   "heroku": {
     "appName": "Kaltura API Demo",

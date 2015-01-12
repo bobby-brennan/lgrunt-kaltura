@@ -27,6 +27,7 @@ module.exports = function (grunt) {
     config.ui = {
        components: {
         'listMedia': { type: 'angular', file: 'media-list.html', jsImports: ['js/media-list.js'] },
+        'listPlaylists': { type: 'angular', file: 'playlist-list.html', jsImports: ['js/playlist-list.js'] },
        },
        pageHeader: 'header.html',
        pageFooter: 'footer.html'

@@ -1,10 +1,10 @@
-app.controller('newestMediaController', function($scope) {
+app.controller('samplePlaylistsController', function($scope) {
   $scope.inputs =
-      {"orderBy":"+createdAt"}
+      {"nameLike":"videos"}
   $scope.inputs.page = 0;
   $scope.loadData = function(inputs) {
     $.ajax({
-      url: 'newestMedia',
+      url: 'samplePlaylists',
       type: 'post',
       contentType: "application/json; charset=utf-8",      
       data: JSON.stringify(inputs)

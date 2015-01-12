@@ -1,0 +1,36 @@
+    <div class="container" ng-controller="PlaylistListController">
+
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Search Results</h1>
+            </div>
+        </div>
+
+        <div ng-repeat="playlist in result">
+          <div class="row">
+            <div class="col-xs-7 playlist-container">
+
+<div id="kaltura_player_{{ playlist.id }}" style="height: {{getHeight()}}px; width: {{getWidth()}}px" itemprop="video" itemscope itemtype="http://schema.org/VideoObject" ng-init="loadScript(playlist)">
+<span itemprop="name" content=""></span>
+<span itemprop="description" content=""></span>
+<span itemprop="duration" content=""></span>
+<span itemprop="thumbnail" content=""></span>
+<span itemprop="width" content="{{ getWidth(playlist) }}"></span>
+<span itemprop="height" content="{{ getHeight(playlist) }}"></span>
+<a href="http://corp.kaltura.com/products/video-platform-features">Video Platform</a>
+<a href="http://corp.kaltura.com/Products/Features/Video-Management">Video Management</a> 
+<a href="http://corp.kaltura.com/Video-Solutions">Video Solutions</a>
+<a href="http://corp.kaltura.com/Products/Features/Video-Player">Video Player</a>
+</div>
+
+             </div>
+             <div class="col-xs-5">
+               <h3>{{ playlist.name }}</h3>
+               <p>{{ playlist.description }}</p>
+             </div>
+           </div>
+           <hr>
+         </div>
+
+    </div>

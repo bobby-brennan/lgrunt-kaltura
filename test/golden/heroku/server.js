@@ -14,10 +14,8 @@ App.use(BodyParser.urlencoded({
 }));
 
 App.get('/', function(req, res, next) {
-  console.log('star');
   if (!Kaltura.initialized()) {
-    console.log('redir');
-    res.redirect('/secrets.html');
+    res.redirect('/initialize.html');
   } else {
     next();
   }
@@ -34,19 +32,28 @@ App.post('/setSecrets', function(req, res) {
 });
 
 App.get('/', function(req, res) {
-  res.redirect('/newest-media.html');
+  res.redirect('home.html');
 });
 
 
 App.post('/newestMedia', function(req, res) {
-  console.log('request' + JSON.stringify(req.body));
   Kaltura.newestMedia(req.body.nameLike, function(err, result) {
     if (err) {
       console.log('Error:' + JSON.stringify(err));
       res.statusCode(401);
       return res.end();
     }
-    console.log('got data, returning:' + JSON.stringify(result));
+    res.send(JSON.stringify(result));
+  });
+})
+
+App.post('/samplePlaylists', function(req, res) {
+  Kaltura.samplePlaylists(req.body.nameLike, function(err, result) {
+    if (err) {
+      console.log('Error:' + JSON.stringify(err));
+      res.statusCode(401);
+      return res.end();
+    }
     res.send(JSON.stringify(result));
   });
 })

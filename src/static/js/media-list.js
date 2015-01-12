@@ -6,7 +6,7 @@ app.controller('MediaListController', function($scope) {
       "?autoembed=true&entry_id=" + video.id +
       "&playerId=kaltura_player_" + video.id +
       "&width=400&height=333")
-    .then(function() {console.log('loaded script')},
+    .then(function() {},
           function(err) {console.log('err:' + err)})
   }
 })
