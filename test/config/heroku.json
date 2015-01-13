@@ -23,7 +23,8 @@
       "nameLike": "videos"
     }
   }, {
-    "operationId": "like",
+    "operationIds": ["checkLikeExists", "like", "unlike"],
+    "uiComponent": "like",
     "alias": "Like Video",
     "variables": {
       "entryId": "entryId"

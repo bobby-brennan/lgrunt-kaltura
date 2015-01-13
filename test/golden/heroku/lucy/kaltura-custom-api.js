@@ -13,7 +13,7 @@ exports.initialized = function() {
   return Client.initialize ? Client.initialized() : Secrets !== null;
 }
 
-exports.newestMedia = function(nameLike, callback) {
+exports.newestMedia_listMedia = function(nameLike, callback) {
   var params = {
     'orderBy': '+createdAt',
     'nameLike': nameLike,
@@ -22,7 +22,7 @@ exports.newestMedia = function(nameLike, callback) {
     params[secret] = Secrets[secret];
   }
   return Client.listMedia(params, callback);}
-exports.samplePlaylists = function(nameLike, callback) {
+exports.samplePlaylists_listPlaylists = function(nameLike, callback) {
   var params = {
     'nameLike': nameLike || "videos",
   };
@@ -30,7 +30,15 @@ exports.samplePlaylists = function(nameLike, callback) {
     params[secret] = Secrets[secret];
   }
   return Client.listPlaylists(params, callback);}
-exports.likeVideo = function(entryId, callback) {
+exports.likeVideo_checkLikeExists = function(entryId, callback) {
+  var params = {
+    'entryId': entryId,
+  };
+  for (var secret in Secrets) {
+    params[secret] = Secrets[secret];
+  }
+  return Client.checkLikeExists(params, callback);}
+exports.likeVideo_like = function(entryId, callback) {
   var params = {
     'entryId': entryId,
   };
@@ -38,4 +46,12 @@ exports.likeVideo = function(entryId, callback) {
     params[secret] = Secrets[secret];
   }
   return Client.like(params, callback);}
+exports.likeVideo_unlike = function(entryId, callback) {
+  var params = {
+    'entryId': entryId,
+  };
+  for (var secret in Secrets) {
+    params[secret] = Secrets[secret];
+  }
+  return Client.unlike(params, callback);}
 

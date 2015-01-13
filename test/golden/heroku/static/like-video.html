@@ -1,22 +1,22 @@
-<div ng-controller="samplePlaylistsController" ng-init="">
+<div ng-controller="likeVideoController" ng-init="">
 
   <div ng-if="showInputs" class="container">
     <div class="row">
       <div class="col-md-5">
         <form>
           <div class="form-group">
-            <label>nameLike</label>
-            <input class="form-control" ng-model="inputs['nameLike']">
+            <label>entryId</label>
+            <input class="form-control" ng-model="inputs['entryId']">
           </div>
 
-          <input type="submit" class="btn btn-large btn-primary" ng-click="listPlaylists()" value="Reload">
+          <input type="submit" class="btn btn-large btn-primary" ng-click="checkLikeExists()" value="Reload">
         </form>
       </div>
     </div>
   </div>
 
 
-  <div ng-include="'playlist-list.html'" ng-init="listPlaylists()"></div>
+  <div ng-include="'like.html'" ng-init="checkLikeExists()"></div>
 
   <div ng-if="showInputs" class="row text-center">
       <div class="col-lg-12">

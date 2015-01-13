@@ -35,9 +35,8 @@ App.get('/', function(req, res) {
   res.redirect('home.html');
 });
 
-
-App.post('/newestMedia', function(req, res) {
-  Kaltura.newestMedia(req.body.nameLike, function(err, result) {
+App.post('/newestMedia_listMedia', function(req, res) {
+  Kaltura.newestMedia_listMedia(req.body.nameLike, function(err, result) {
     if (err) {
       console.log('Error:' + JSON.stringify(err));
       res.status(401);
@@ -46,9 +45,8 @@ App.post('/newestMedia', function(req, res) {
     res.send(JSON.stringify(result));
   });
 })
-
-App.post('/samplePlaylists', function(req, res) {
-  Kaltura.samplePlaylists(req.body.nameLike, function(err, result) {
+App.post('/samplePlaylists_listPlaylists', function(req, res) {
+  Kaltura.samplePlaylists_listPlaylists(req.body.nameLike, function(err, result) {
     if (err) {
       console.log('Error:' + JSON.stringify(err));
       res.status(401);
@@ -57,9 +55,28 @@ App.post('/samplePlaylists', function(req, res) {
     res.send(JSON.stringify(result));
   });
 })
-
-App.post('/likeVideo', function(req, res) {
-  Kaltura.likeVideo(req.body.entryId, function(err, result) {
+App.post('/likeVideo_checkLikeExists', function(req, res) {
+  Kaltura.likeVideo_checkLikeExists(req.body.entryId, function(err, result) {
+    if (err) {
+      console.log('Error:' + JSON.stringify(err));
+      res.status(401);
+      return res.end();
+    }
+    res.send(JSON.stringify(result));
+  });
+})
+App.post('/likeVideo_like', function(req, res) {
+  Kaltura.likeVideo_like(req.body.entryId, function(err, result) {
+    if (err) {
+      console.log('Error:' + JSON.stringify(err));
+      res.status(401);
+      return res.end();
+    }
+    res.send(JSON.stringify(result));
+  });
+})
+App.post('/likeVideo_unlike', function(req, res) {
+  Kaltura.likeVideo_unlike(req.body.entryId, function(err, result) {
     if (err) {
       console.log('Error:' + JSON.stringify(err));
       res.status(401);

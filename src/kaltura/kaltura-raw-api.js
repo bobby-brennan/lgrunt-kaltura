@@ -50,3 +50,17 @@ exports.like = function(options, callback) {
     callback(null, result);
   }, options.entryId)
 }
+
+exports.unlike = function(options, callback) {
+  KalturaClient.like.unlike(function(result) {
+    if (result.objectType === 'KalturaAPIException') return callback(result);
+    callback(null, result);
+  }, options.entryId)
+}
+
+exports.checkLikeExists = function(options, callback) {
+  KalturaClient.like.checkLikeExists(function(result) {
+    if (result.objectType === 'KalturaAPIException') return callback(result);
+    callback(null, result);
+  }, options.entryId)
+}

@@ -26,14 +26,34 @@ module.exports = function (grunt) {
 
     config.ui = {
        components: {
-        'listMedia': { type: 'angular', file: 'media-list.html', jsImports: ['js/media-list.js'] },
-        'listPlaylists': { type: 'angular', file: 'playlist-list.html', jsImports: ['js/playlist-list.js'] },
-        'like': { type: 'angular', file: 'like.html', jsImports: []},
+        'listMedia': { type: 'angular', file: 'media-list.html'}, 
+        'listPlaylists': { type: 'angular', file: 'playlist-list.html'},
+        'like': { type: 'angular', file: 'like.html'},
        },
        pageHeader: 'header.html',
-       pageFooter: 'footer.html'
+       pageFooter: 'footer.html',
+       jsImports: ['js/kaltura-controllers.js']
     }
     config.clientFile = './kaltura/kaltura-raw-api.js';
+
+    /*
+    var toPush = [];
+    config.functions.forEach(function(d) {
+      if (d.operationId === 'like') {
+        var unlike = JSON.parse(JSON.stringify(d));
+        unlike.operationId = 'unlike';
+        unlike.alias += ' Unlike';
+        var checkLike = JSON.parse(JSON.stringify(d));
+        checkLike.operationId = 'checkIfLikeExists';
+        checkLike.alias += ' Check';
+        toPush.push(unlike);
+        toPush.push(checkLike);
+      }
+    })
+
+    config.functions = config.functions.concat(toPush);
+    */
+
     config.wrapperOnly = true;
 
     require('./copy-src-files.js').copy(grunt);
