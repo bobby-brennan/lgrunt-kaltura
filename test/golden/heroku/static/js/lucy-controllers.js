@@ -1,7 +1,11 @@
 app.controller('newestMediaController', function($scope) {
-  if (!$scope.inputs) {
   $scope.inputs =
       {"orderBy":"+createdAt"}
+  $scope.showInputs = false;
+  $scope.showTheInputs = function() {
+    console.log('sti');
+    $scope.showInputs = true;
+    $scope.$apply();
   }
   $scope.inputs.page = 0;
   $scope.listMedia = function(cb) {
@@ -33,9 +37,13 @@ app.controller('newestMediaController', function($scope) {
 })
 
 app.controller('samplePlaylistsController', function($scope) {
-  if (!$scope.inputs) {
   $scope.inputs =
       {"nameLike":"videos"}
+  $scope.showInputs = false;
+  $scope.showTheInputs = function() {
+    console.log('sti');
+    $scope.showInputs = true;
+    $scope.$apply();
   }
   $scope.inputs.page = 0;
   $scope.listPlaylists = function(cb) {
@@ -67,9 +75,13 @@ app.controller('samplePlaylistsController', function($scope) {
 })
 
 app.controller('likeVideoController', function($scope) {
-  if (!$scope.inputs) {
   $scope.inputs =
       {}
+  $scope.showInputs = false;
+  $scope.showTheInputs = function() {
+    console.log('sti');
+    $scope.showInputs = true;
+    $scope.$apply();
   }
   $scope.inputs.page = 0;
   $scope.checkLikeExists = function(cb) {
